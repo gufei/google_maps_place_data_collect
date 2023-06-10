@@ -111,7 +111,6 @@ def get_data(key, place_id=None, item=None):
         types = item['types']
 
     if place_id in df[key].index.values:
-        countLine[key] = countLine[key] + 1
         return
 
     basic_url = 'https://maps.googleapis.com/maps/api/place/details/json?key={0}&language=zh-CN&place_id={1}&reviews_sort=newest'
@@ -140,7 +139,6 @@ def get_data(key, place_id=None, item=None):
     }
     # 多线程，再判断一次place_id是否存在
     if place_id in df[key].index.values:
-        countLine[key] = countLine[key] + 1
         return
     try:
         df[key].loc[place_id] = data
