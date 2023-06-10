@@ -142,7 +142,10 @@ def get_data(key, place_id=None, item=None):
     if place_id in df[key].index.values:
         countLine[key] = countLine[key] + 1
         return
-    df[key].loc[place_id] = data
+    try:
+        df[key].loc[place_id] = data
+    except:
+        pass
     data_df = pd.DataFrame([data])
     data_df.to_csv(outfile[key], mode='a', index=False, header=False)
 
