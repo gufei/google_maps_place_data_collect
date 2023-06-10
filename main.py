@@ -92,7 +92,8 @@ def xjp_cj(keyword=None, search_type=None):
             count[key] = count[key] + 1
     multitasking.wait_for_tasks()
 
-    print(key + ' 已进行' + str(count[key]) + '次请求，得到' + str(countLine[key]) + '条有效信息')
+    print(key + ' 已进行' + str(count[key]) + '次请求，得到' + str(countLine[key]) + '条有效信息，总计' + str(
+        len(df[key])) + "条信息")
 
     print(key + ' 结束')
 
