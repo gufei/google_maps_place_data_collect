@@ -171,7 +171,6 @@ def get_search(location, radius, key, next_page_token=None):
         if not next_page_token:
             pbar[key].update()
         return
-    print(url)
     for item in responseJSON['results']:
         if 'plus_code' in item \
                 and (
