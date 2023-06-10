@@ -144,12 +144,11 @@ def get_data(key, place_id=None, item=None):
         return
     try:
         df[key].loc[place_id] = data
+        data_df = pd.DataFrame([data])
+        data_df.to_csv(outfile[key], mode='a', index=False, header=False)
+        countLine[key] = countLine[key] + 1
     except:
         pass
-    data_df = pd.DataFrame([data])
-    data_df.to_csv(outfile[key], mode='a', index=False, header=False)
-
-    countLine[key] = countLine[key] + 1
 
 
 @multitasking.task
@@ -160,8 +159,6 @@ def get_search(location, radius, key, next_page_token=None):
         basic_url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?key={0}&location={1}&radius={2}&type={3}&language=zh-CN'
 
     url = basic_url.format(googleKey, location, radius, key)
-
-
 
     if next_page_token:
         url = url + "&pagetoken=" + next_page_token
